@@ -1,0 +1,29 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "Tutorial Mean FullStack JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- --harmony -R spec",
+    "testWOC": "mocha --harmony -R spec",
+    "startWindows": "NODE_ENV=\"production\"&node --harmony index"
+  },
+  "author": "julian",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "~0.14.0",
+    "koa-route": "~2.4.0",
+    "koa-static": "~1.4.8",
+    "koa-logger": "~1.2.2",
+    "koa.io": "0.0.2",
+    "koa-bodyparser": "~1.3.0",
+    "mongodb": "~1.4.28"
+  },
+  "devDependencies": {
+    "assert": "~1.3.0",
+    "request": "~2.51.0",
+    "superagent": "~0.21.0",
+    "socket.io-client": "~1.2.1",
+    "expect.js": "~0.3.1"
+  }
+}

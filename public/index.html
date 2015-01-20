@@ -1,0 +1,139 @@
+<!doctype html>
+<html ng-app="todoApp" lang="es">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi TODO app</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/angular/angular.js"></script>
+    <script src="/js/todo.js"></script>
+    <script src="/js/factorie.js"></script>
+    <script src="/js/directives.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/materialize/dist/js/materialize.js"></script>
+    
+    <!-- <script src="/myproyect.js"></script> -->
+    <!--<script src="/js/server.min.js"></script>-->
+    <script type="text/javascript" src="/angular-toastr/dist/angular-toastr.js"></script>
+    <!-- Estilos -->
+    <!--<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">-->
+    <!-- <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.css"> -->
+    <link rel="stylesheet" type="text/css" href="/angular-toastr/dist/angular-toastr.css" />
+    
+    <!-- Mis estilos -->
+    <link rel="stylesheet" href="/css/todo.css">
+    
+  </head>
+  <body class="pink lighten-5" >
+    <div class="container " id="application">
+      <div class="row">
+        <div class="col s8 offset-s2" id="registro">
+          <header class="red lighten-2">
+            <h1>Gestor de tareas</h1>
+          </header>
+          <div ng-controller="TodoController">
+            <div ng-hide="myUserName">  
+
+                <!-- Inicio registro_servidor -->
+          
+                <div class="login page red lighten-5">
+                  <form class="form" ng-submit="addUserServidor()">
+                    <h3 class="title red-text  text-lighten-1 ">¿Cuál es tu nombre?</h3>
+                    <input class="usernameInput" type="text" maxlength="14" ng-model="userNameServidor" />
+                  </form>
+                </div>
+              
+            </div> <!-- fin registro -->
+            
+            
+            <div ng-hide="!myUserName">
+              <h3>Estas resgistrado como {{myUserName}}</h3>
+              
+              <div class="row">
+                <div class="col s12 m6 l6" id="lista">
+                  <div class="card-panel grey lighten-3">
+                    <p>{{remaining()}} of {{todos.length}} remaining</p>
+                    
+                    <p ng-repeat="todo in todos">
+                      <input type="checkbox" id="todo-{{$index}}" ng-model="todo.done"  ng-click="toggle(todo)" />
+                      <label class="done-{{todo.done}}" for="todo-{{$index}}">{{todo.text}}</label>
+                    </p>
+                    
+                  </div>
+                </div>
+                
+                <div class="col s12 m6 l6" id="acciones">
+                  <form ng-submit="addTodo()">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="addTodo" type="text" class="validate" ng-model="todoText"  size="30">
+                        <label for="addTodo">Añade tarea</label>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': !todoText}">
+                      <div class="input-group">
+                       
+                        <span class="input-group-btn">
+                          <button class="btn btn-primary" type="submit" ng-disabled="!todoText">Añadir</button>
+                        </span>
+                        
+                      </div><!-- /input-group -->
+                    </div>
+                    
+                    <div class="form-group">
+                      <button type="button" ng-click="archive()" class="btn btn-warning">Archivar completados</button>
+                    </div><!-- /form-group -->
+                    
+                  </form>
+                    
+                  </div>
+                </div>
+              <!--VIDEO -->
+                <div class="video-container">
+                  <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+              <!--FIN VIDEO -->
+              
+              </div>
+
+            </div>
+          
+            
+        </div> <!-- fin columna -->
+      </div> <!-- fin fila -->
+                  <!-- Fin registro_servidor -->
+<!--
+
+        <div ng-hide="!myUserName">
+          <div id="css_bienvenido">Estas resgistrado como {{myUserName}}</div>
+          <div ng-show="error">{{error}}</div>
+          <div id="css_lista">
+            <span>{{remaining()}} of {{todos.length}} remaining</span>
+             <ul class="unstyled">
+              <li ng-repeat="todo in todos">
+                <input type="checkbox" ng-model="todo.done" ng-click="toggle(todo)">
+                <span class="done-{{todo.done}}">{{todo.text}}</span>
+              </li>
+            </ul>
+          </div>
+          <div id="css_controlador">
+            <div id="css_addTodo">
+              <form  ng-submit="addTodo()">
+                <input type="text" ng-model="todoText"  size="30"
+                         placeholder="add new todo here">
+                <input class="btn-primary" type="submit" value="add">
+              </form>
+            </div>
+            <div id="css_archiveTodo">
+              [ <a href="" ng-click="archive()">archive Todo's</a> ]
+            </div>
+          </div>
+        </div>
+      </div>
+-->
+    </div> <!--FIN container -->
+    
+  </body>
+  
+  
+  
+</html>
